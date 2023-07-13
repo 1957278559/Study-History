@@ -31,3 +31,28 @@
 
 有这样一种情况，我们需要搜索的数据不存在，那么我们就需要读取完所有数据才能返回给上层用户，搜索的数据不存在。工程上玩玩会采用**布隆过滤器**来加速读取
 
+# leveldb
+## 整体架构
+leveldb整体架构如下
+![leveldb整体架构](./img/3.png)
+在上层提供给用户的主要是针对kv的操作(增删改查)
+1. Mem Table：所有的kv数据进来时，会记录到Mem Table中，leveldb采用**跳表**是实现
+2. Immutable Memtable：当Mem Table达到一定大小后，就将该Mem Table关闭，转变为只读的Immutable Memtable，后续会将该Immutable Memtable持久化到磁盘变成sstable。然后重新打开一个新的Mem Table负责新的写请求
+3. log：主要是通过WAL方式记录的redo log，用来保证数据的可靠性，当进程异常挂掉重新启动时恢复数据
+4. sstable：磁盘上存储kv数据和索引文件。当Immutable Memtable写入磁盘后，会变成一个小的sstable。另外当跨层之间合并时，也会产生新的sstable文件
+
+## leveldb读写过程
+![leveldb读写过程](./img/4.png)
+**写过程**：在leveldb中写请求进来时主要分为两步，1.会首先记录redo log，以保证数据可靠性；2.其次再记录到MemTable(采用跳表)中
+**读过程**：读取的核心逻辑是按照倒序读取数据
+1. 首先在Mem Table中查找，如果找到则立即返回，否则进入第二步查找
+2. 在Immutable Memtable中查找，如果找到则立即返回，否则进入第三步查找
+3. 在L0层和其他层的sstable查找，但L0层的sstable之间的数据有可能重叠，所以依旧需要按照倒序依次查找。除了L0层外的其他层，层内数据不重叠，每层最多查找一个sstable文件，同时依然遵守按照数据新旧的规则查找
+
+## leveldb压缩合并
+**压缩合并**可以说是leveldb最核心的一个功能。一方面通过压缩来解决**空间放大**问题，另一方面也通过压缩来**提升读性能**、**降低读放大**。同时也因为压缩合并间接造成了写放大。leveldb中要锁类型分为两种：**minor压缩**和**major压缩**
+**minor压缩**：是指将Immutable Memtable写入到磁盘形成L0层sstable的过程
+![minor压缩](./img/5.png)
+**major压缩**：主要发生在跨层合并时，例如当L1层的文件个数或者数据大小达到一定的阈值后，就会触发L1层的压缩，而L1层会和他相邻的L2层发生跨层合并。而具体在合并过程中，因为每个sstable都是有序的，所以可以采用**归并**的方式进行合并
+![major压缩](./img/6.png)
+
