@@ -1,0 +1,15 @@
+#忽略当前目录下的Debug文件
+Debug/
+Release/
+*.obj
+x64
+.vs
+*.exe
+
+# !是不忽略的意思，以下内容不应该被忽略
+!*.sln
+!*.vcxproj
+!*.filters
+
+# .user结尾的文件应该被忽略
+*.user
