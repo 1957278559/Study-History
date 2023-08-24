@@ -11,7 +11,10 @@
 1. 首先记录到WAL log文件中
 2. 接着记录到Mem Table中
 3. 当Mem Table达到一定**阈值**后关闭Mem Table，变成ImmuMem Table(只读，等待持久化到文件)；然后打开新的Mem Table处理写操作，将ImmuMem Table写入磁盘中，形成一个SSTable
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 ![写操作完整过程](./img/1.png)
 
 * 内存数据(Mem Table)：内存数据主要缓存我们写入进来的数据。一般选择**跳表**或者**红黑树**等有序数据结构实现
@@ -28,11 +31,15 @@
 1. 首先从Mem Table中尝试读取数据，如果读取到数据，则停止读取过程，立即返回给用户
 2. 如果Mem Table中数据未读取到，则尝试从ImmuMem Table读取数据，如果读取到，则停止读取，返回给用户
 3. 如果ImmuMem Table中数据未读到，则尝试从SSTable中读取数据
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 ![读操作完整过程](./img/2.png)
 
 有这样一种情况，我们需要搜索的数据不存在，那么我们就需要读取完所有数据才能返回给上层用户，搜索的数据不存在。工程上玩玩会采用**布隆过滤器**来加速读取
 
+<<<<<<< HEAD
 # leveldb
 ## 整体架构
 leveldb整体架构如下
@@ -65,3 +72,5 @@ leveldb整体架构如下
 
 ![major压缩](./img/6.png)
 
+=======
+>>>>>>> origin/master
