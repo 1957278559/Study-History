@@ -3,6 +3,7 @@
 
 ![数据存储与检索的两大分支](./img/1.png)
 
+<<<<<<< HEAD
 ## 事务（ACID）
 事务具有：
 * 原子性-A(tomicity)：事务内的操作要么全做，要么全不做
@@ -88,3 +89,6 @@ MongoDB、Redis、Elasticsearch
 
 ## SQL引擎--Optimizer
 优化器(Optimizer)
+=======
+# 基于页(b+ tree)的存储引擎
+>>>>>>> origin/master
