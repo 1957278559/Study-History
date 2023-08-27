@@ -18,24 +18,11 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\export.h" />
-    <ClInclude Include="include\slice.h" />
-    <ClInclude Include="include\status.h" />
-    <ClInclude Include="port\port.h" />
-    <ClInclude Include="port_stdcxx.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="util\status.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="port\README.md" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{11cf095d-910d-4c98-9d79-b7b950fd6384}</ProjectGuid>
-    <RootNamespace>leveldb</RootNamespace>
+    <ProjectGuid>{8a51bbbf-5e22-47b3-9606-fae87e9f9f17}</ProjectGuid>
+    <RootNamespace>LevelDB</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -151,6 +138,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="slice.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

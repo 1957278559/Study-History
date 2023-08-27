@@ -4,6 +4,10 @@ LSM 的核心思想是为了换取最大的写性能而放弃部分读性能。
 它尽量减少随机写的次数。leveldb 首先将数据更新到内存中，当内存中数据量达到一定阈值，再将这部分数据真正刷新到磁盘文件中。其整体架构如下图：
 ![mainframe](./img/mainframe.png)
 
+在编译完 leveldb 后，可以使用下面的命令将其头文件和库加入系统目录，即可在其他项目中使用相对路径来使用 leveldb
+> cp -r ./include/leveldb /usr/include
+> cp build/libleveldb.a /usr/local/lib/
+
 ## MemTable
 leveldb 一次写入操作并不是直接将数据写到磁盘文件中，而是先将数据写入到内存中，也就是这里的 MemTable，它是一个内存中进行数据组织与维护的结构。
 在 MemTable 中数据按照用户定义的方法排序之后**按序存储**，等其存储内容达到阈值(4 MB)时，便将其转换成一个不可修改的 memtable，与此同时创建一个新的 memtable 来供用户进行读写操作。memtable 底层采用**跳表**，大多数操作都是 O(logn)
