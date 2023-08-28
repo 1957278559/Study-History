@@ -4,10 +4,28 @@
     <Filter Include="include">
       <UniqueIdentifier>{2262a9ee-2531-4fd7-89c8-5d16c62345b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{52c29d61-9b4e-4e2b-88f3-4f132277beb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="db">
+      <UniqueIdentifier>{7af5f252-5cd0-4f54-8d4b-ef0c5a6b8e47}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="slice.h">
+    <ClInclude Include="include\slice.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\status.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="util\arena.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\random.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="db\skiplist.h">
+      <Filter>db</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

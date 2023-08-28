@@ -139,7 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="slice.h" />
+    <ClInclude Include="db\skiplist.h" />
+    <ClInclude Include="include\slice.h" />
+    <ClInclude Include="include\status.h" />
+    <ClInclude Include="util\arena.h" />
+    <ClInclude Include="util\random.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
