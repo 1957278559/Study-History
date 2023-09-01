@@ -49,12 +49,13 @@ namespace leveldb {
 	}
 
 	char* Arena::AllocateFallback(size_t bytes) {
-		// 如果需要分配的内存大于内存块的 1/4，则会创建新的内存块
+		// 如果需要分配的内存大于内存块的 1/4
+		// 也就是需要分配的内存至少为 1K，则创建对应大小的内存块
 		if (bytes > kBlockSize / 4) {
 			char* result = AllocateNewBlock(bytes);
 			return result;
 		}
-		// 浪费掉当前内存块剩余的空间。将 alloc_ptr_ 设置为新分配的内存块的起始地址
+		// 舍弃掉当前内存块剩余的空间。将 alloc_ptr_ 设置为新分配的内存块的起始地址
 		// 因为当该函数被调用时，表示当前内存块剩余的内存不够使用，但需要分配的内存
 		// 又小于一个内存块大小的 1/4
 		alloc_ptr_ = AllocateNewBlock(kBlockSize);

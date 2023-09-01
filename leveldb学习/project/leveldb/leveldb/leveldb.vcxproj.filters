@@ -10,6 +10,9 @@
     <Filter Include="db">
       <UniqueIdentifier>{7af5f252-5cd0-4f54-8d4b-ef0c5a6b8e47}</UniqueIdentifier>
     </Filter>
+    <Filter Include="table">
+      <UniqueIdentifier>{4b16e754-c044-40d8-a33e-60cc70f8ee35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\slice.h">
@@ -27,5 +30,55 @@
     <ClInclude Include="db\skiplist.h">
       <Filter>db</Filter>
     </ClInclude>
+    <ClInclude Include="include\filter_policy.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="util\coding.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\hash.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\comparator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="util\no_destructor.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="include\write_batch.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\iterator.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\options.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\env.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="util\coding.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\hash.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\bloom.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="util\comparator.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="db\write_batch.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="table\iterator.cpp">
+      <Filter>table</Filter>
+    </ClCompile>
+    <ClCompile Include="util\env.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

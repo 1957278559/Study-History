@@ -16,6 +16,7 @@ namespace leveldb {
 		Status& operator=(Status && rhs) noexcept;
 
 		// 返回对应的错误状态
+		static Status OK() { return Status(); }
 		static Status NotFound(const Slice& msg, const Slice& msg2 = Slice()) { return Status(Code::kNotFound, msg, msg2); }
 		static Status Corruption(const Slice& msg, const Slice& msg2 = Slice()) { return Status(Code::kCorruption, msg, msg2); }
 		static Status NotSupported(const Slice& msg, const Slice& msg2 = Slice()) { return Status(Code::kNotSupported, msg, msg2); }
