@@ -3,7 +3,7 @@
 ## git 相关操作
 ### 连接到远程仓库
   1.初始化本地仓库 git init
-  2.连接远程仓库 git remote add 远程仓库地址
+  2.连接远程仓库 git remote add origin 远程仓库地址
 ### 查看分支
 1. 查看远程分支：git branch -r
 2. 查看本地分支：git branch
