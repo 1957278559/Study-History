@@ -9,6 +9,7 @@ import (
 func IndexHanler(w http.ResponseWriter, r *http.Request) {
 	//解析模板
 	t := template.Must(template.ParseFiles("views/index.html"))
+
 	//执行
 	t.Execute(w, "")
 }
